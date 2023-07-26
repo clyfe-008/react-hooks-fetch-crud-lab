@@ -1,11 +1,26 @@
 import React from "react";
+import QuestionItem from "./QuestionItem";
 
-function QuestionList() {
+function QuestionList({ questions, updateQuestion, deleteQuestion }) {
+  // Check if questions is undefined or an empty array
+  if (!questions || questions.length === 0) {
+    return <div>No questions available.</div>;
+  }
+
   return (
-    <section>
-      <h1>Quiz Questions</h1>
-      <ul>{/* display QuestionItem components here after fetching */}</ul>
-    </section>
+    <div>
+      <h1>Questions</h1>
+      <ul>
+        {questions.map((question) => (
+          <QuestionItem
+            key={question.id}
+            question={question}
+            updateQuestion={updateQuestion}
+            deleteQuestion={deleteQuestion}
+          />
+        ))}
+      </ul>
+    </div>
   );
 }
 
